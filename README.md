@@ -63,8 +63,3 @@ This project helps understanding:
 🏆 Author
 
 👨‍💻 André Ferreira
-
-
----
-
-Bro, do you want me to also add a **"Bonus part"** section in case you plan to implement Unicode or acknowledgment signals (the extra requirements in the MiniTalk bonus)?
