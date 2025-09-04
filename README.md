@@ -1,65 +1,53 @@
-# MiniTalk
+# 📨 Minitalk
 
-📡 **MiniTalk** is a project from 42 that implements a simple communication system between two programs — a *server* and a *client* — using **UNIX signals** (`SIGUSR1` and `SIGUSR2`).  
-The client sends a string of characters to the server, which receives and prints it in the terminal.
-
----
-
-## 🛠️ How it works
-- The server waits for connections and displays its **PID** in the terminal.  
-- The client sends a message to the server’s PID, **bit by bit**, using signals (`SIGUSR1` and `SIGUSR2`).  
-- The server rebuilds the characters from the received bits and prints the message.  
+The **Minitalk** project is a communication program built using **UNIX signals**.  
+It allows a **client** to send messages to a **server** process, character by character, using only signals.
 
 ---
 
-## 🚀 Compilation
-Compile the project using the `Makefile`:
+## 🚀 Project Overview
 
-```bash
-make
+- **Goal:** Implement interprocess communication using only `SIGUSR1` and `SIGUSR2`.  
+- **Components:**
+  - **Server**: waits for messages from the client.  
+  - **Client**: encodes and sends a string message to the server using signals.  
+- **Encoding:**  
+  - Each bit of a character is sent as a signal.  
+  - `SIGUSR1` → bit `1`  
+  - `SIGUSR2` → bit `0`
 
-This will generate two executables:
+---
 
-    server
+## 📋 Features
 
-    client
+- Send any ASCII string from client → server.  
+- Messages are **rebuilt bit by bit** on the server side.  
+- Server prints the received message on standard output.  
+- Handles multiple characters and entire strings.  
+- Memory management ensures messages are freed after being printed.
 
-▶️ Usage
+---
 
-    Start the server:
+▶️ Usage Example
 
-./server
+Start the server: 
 
-It will display something like:
+`./server`
 
-Server PID: 4242
+Displays the PID of the server.
 
-In another terminal, start the client with the server PID and your message:
+Run the client: 
 
-./client 4242 "Hello MiniTalk!"
+`./client <server_pid> "Hello World!"`
 
-The server will then output:
+<server_pid> → replace with the number shown by the server.
 
-    Hello MiniTalk!
+"Hello World!" → the message you want to send.
 
-📑 Project Requirements
+The server prints the received message:
 
-    Communication must be done only with UNIX signals (SIGUSR1 and SIGUSR2).
+`Hello World!`
 
-    The client must be able to send any string (ASCII characters).
+👨‍💻 Author
 
-    The server must handle multiple messages, one after the other.
-
-🧠 Learnings
-
-This project helps understanding:
-
-    Signal handling (sigaction, kill).
-
-    Encoding and decoding messages bit by bit.
-
-    Synchronization between processes.
-
-🏆 Author
-
-👨‍💻 André Ferreira
+André Lima
